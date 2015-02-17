@@ -1,8 +1,10 @@
 package Evive.controller;
 
+import Evive.modelUI.LoginModelUi;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -10,5 +12,11 @@ public class LoginController {
     public String loginPage()
     {
         return "login";
+    }
+    @RequestMapping(value = "/loginController",method = RequestMethod.POST)
+    public @ResponseBody Map<String,Object> loginController(@RequestBody LoginModelUi loginModelUi)
+    {
+
+        return null;
     }
 }
