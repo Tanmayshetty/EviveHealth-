@@ -8,6 +8,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.min.js"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
 <script type="text/javascript" src="html/js/login.js"></script>
 <body ng-app="MainApp">
 
@@ -28,27 +29,35 @@
     </div>
     <form class="email-login"  ng-show="formshow" ng-submit="login()">
         <div class="u-form-group">
-            <input type="email" placeholder="Email"/>
+            <input type="email" placeholder="Email" ng-model="loginemail"/>
         </div>
         <div class="u-form-group">
-            <input type="password" placeholder="Password"/>
+            <input type="password" placeholder="Password" ng-model="loginpassword"/>
         </div>
         <div class="u-form-group">
             <button type="submit">Log in</button>
         </div>
-        <div class="u-form-group">
+        <div class="u-form-group" >
             <a href="#" class="forgot-password">Forgot password?</a>
         </div>
     </form>
-    <form class="email-signup" ng-hide="formshow" >
+    <form class="email-signup" ng-hide="formshow" ng-submit="register()" >
         <div class="u-form-group">
-            <input type="email" placeholder="Email"/>
+            <input type="email" placeholder="Email" ng-model="registerEmail"/>
         </div>
         <div class="u-form-group">
-            <input type="password" placeholder="Password"/>
+            <input type="password" placeholder="Password" ng-model="registerPassword"/>
         </div>
         <div class="u-form-group">
-            <input type="password" placeholder="Confirm Password"/>
+            <input type="password" placeholder="Confirm Password" />
+        </div>
+        <div class="select-style">
+            <select ng-model="gender">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+
+            </select>
         </div>
         <div class="u-form-group">
             <button type="submit">Sign Up</button>

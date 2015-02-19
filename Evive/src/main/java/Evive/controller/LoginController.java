@@ -11,6 +11,7 @@ public class LoginController {
     @RequestMapping(value = "/login")
     public String loginPage()
     {
+        System.out.println("Login page");
         return "login";
     }
     @RequestMapping(value = "/loginController",method = RequestMethod.POST)
