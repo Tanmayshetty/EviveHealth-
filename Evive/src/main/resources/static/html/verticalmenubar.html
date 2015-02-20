@@ -1,0 +1,10 @@
+<nav class="main-nav" ng-controller="dashboardCtrl" ng-init="init()">
+    <ul>
+        <li ng-repeat="(column,subcolumn) in columns" ng-click="parentClick($index)"><a href="#" >{{column}}</a>
+            <ul ng-repeat="subcolumnName in subcolumn" ng-show="displaystr[$index]">
+                <li><a href="#">{{subcolumnName}}</a></li>
+            </ul>
+        </li>
+
+    </ul>
+</nav>
