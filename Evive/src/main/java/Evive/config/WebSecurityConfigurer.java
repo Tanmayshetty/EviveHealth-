@@ -17,7 +17,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception
     {
-        httpSecurity.formLogin().loginPage("/html/index.html").and().csrf()
+        httpSecurity.authorizeRequests().antMatchers("/html/dashboard.html").permitAll().and()
+        .formLogin().loginPage("/index").and().csrf()
                 .csrfTokenRepository(csrfTokenRepository()).and()
                 .addFilterAfter(new CsrfFilterHeaders(), CsrfFilter.class);
 
@@ -32,7 +33,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     {
         webSecurity.ignoring()
                 .antMatchers("/static/css/**")
-                .antMatchers("/static/js/**");
+                .antMatchers("/static/js/**").
+                antMatchers("/static/html/*");
     }
 
 }

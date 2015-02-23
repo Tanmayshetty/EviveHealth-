@@ -8,12 +8,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
-    @Column
+    @Column(unique = true)
     private String emailId;
     @Column
     private String password;
     @Column
     private String gender;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getEmailId() {
         return emailId;

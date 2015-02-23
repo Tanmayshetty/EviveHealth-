@@ -22,7 +22,7 @@ public class RegisterController {
             user.setPassword(modelUI.getPassword());
             user.setGender(modelUI.getGender());
             userRepository.save(user);
-            objectMap.put("Status","success");
+            objectMap.put("status","success");
             return null;
         }
 }
