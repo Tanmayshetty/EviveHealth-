@@ -1,9 +1,12 @@
-<div class="menu_simple" ng-controller="dashboardCtrl" ng-init="init()">
+<div  ng-controller="MenuCtrl" ng-init="init()">
+    <nav>
+
     <ul>
-
-
-        <li ng-repeat="column in columns" ng-click="parentClick($index)"><a href="#">{{column.columnname}}</a>
-
+        <li  ng-repeat="column in columns" ng-click="parentClick($index)">
+            <div class="navimage">
+            <span class={{column.image}} aria-hidden="true"></span>
+            </div>
+            <a href="#">{{column.columnname}}</a>
             <ul ng-repeat="sub in column.subcolumn track by $index"  ng-show="displaymenu($parent.$index)">
                 <li>
                     <a href={{sub.url}}>{{sub.column}}</a>
@@ -12,4 +15,5 @@
         </li>
 
     </ul>
+    </nav>
 </div>
