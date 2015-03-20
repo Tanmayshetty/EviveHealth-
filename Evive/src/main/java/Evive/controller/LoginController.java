@@ -27,17 +27,24 @@ public class LoginController {
     public @ResponseBody Map<String,Object> loginController(@RequestBody LoginModelUi loginModelUi,HttpServletResponse servletResponse)
     {
         Map<String,Object> objectMap=new HashMap<String, Object>();
-        System.out.println("User emael"+loginModelUi.getEmailId()+"  password  ; "+loginModelUi.getPassword());
+
         String encryptedPass= BCrypt.hashpw(loginModelUi.getPassword(),BCrypt.gensalt());
         User user= userRepository.
-                findByEmailIdAndPassword(loginModelUi.getEmailId(),encryptedPass);
+                findByEmailId(loginModelUi.getEmailId());
+        System.out.println("User email"+loginModelUi.getEmailId()+"  password  : "+BCrypt.checkpw(loginModelUi.getPassword(),user.getPassword()));
+
         if(user==null)
         {
             objectMap.put("status","fail");
         }
         else {
-            servletResponse.addCookie(new Cookie("user_id",String.valueOf(user.getUserId())));
-            objectMap.put("status","success");
+            if(BCrypt.checkpw(loginModelUi.getPassword(),user.getPassword()))
+            {
+
+                servletResponse.addCookie(new Cookie("user_id",String.valueOf(user.getUserId())));
+                objectMap.put("status","success");
+            }
+
         }
         return objectMap;
     }

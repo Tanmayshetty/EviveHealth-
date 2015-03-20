@@ -16,8 +16,9 @@ angular.module('MainApp',['ui.bootstrap','facebook', 'googleplus'])
                 contentType:'application/json'
             }).success(function(response)
                 {
-                    if(response.data=="success")
-                    $location.url("/dashboard.html");
+                    console.log(response);
+                    if(response.status=="success")
+                    $location.url("/dashboard");
                 })
         }
         function registerController(registerData){
@@ -31,6 +32,7 @@ angular.module('MainApp',['ui.bootstrap','facebook', 'googleplus'])
                 contentType:'application/json'
             }).success(function(response)
             {
+                console.log(response);
                 if(response.status=="success")
                 {
                     $location.url("/dashboard.html");
@@ -61,28 +63,16 @@ angular.module('MainApp',['ui.bootstrap','facebook', 'googleplus'])
             $scope.loginsignup='notactive';
         }
         $scope.login=function(){
-            var encryptedPasswordArray=CryptoJS.MD5($scope.registerPassword);
             var encryptedPassword='';
-            console.log(encryptedPasswordArray);
-            for(var i=0;i<encryptedPasswordArray.words.length;i++)
-            {
-                encryptedPassword=encryptedPassword+encryptedPasswordArray.words[i];
-            }
+
             $scope.loginData={emailId:$scope.loginemail,
-                                password:encryptedPassword};
+                                password:$scope.loginpassword};
             globals.loginController($scope.loginData);
         }
         $scope.register=function(){
-            var encryptedPasswordArray=CryptoJS.MD5($scope.registerPassword);
-            var encryptedPassword='';
-            console.log(encryptedPasswordArray);
-            for(var i=0;i<encryptedPasswordArray.words.length;i++)
-            {
-                encryptedPassword=encryptedPassword+encryptedPasswordArray.words[i];
-            }
-            console.log("Encrypted Password"+encryptedPassword);
+
             $scope.registerData={email:$scope.registerEmail,
-                                password:encryptedPassword,
+                                password:$scope.registerPassword,
                                 gender:$scope.gender};
             globals.registerController($scope.registerData);
         }

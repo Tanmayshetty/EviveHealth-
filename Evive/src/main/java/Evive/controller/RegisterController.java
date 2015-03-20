@@ -21,6 +21,7 @@ public class RegisterController {
             User user=new User();
             user.setEmailId(modelUI.getEmail());
             user.setPassword(BCrypt.hashpw(modelUI.getPassword(),BCrypt.gensalt()));
+        System.out.println("User Pass"+BCrypt.hashpw(modelUI.getPassword(),BCrypt.gensalt()));
             user.setGender(modelUI.getGender());
             userRepository.save(user);
             objectMap.put("status","success");
